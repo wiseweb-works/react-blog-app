@@ -1,5 +1,12 @@
-const ToastNotify = () => {
-  return <div>ToastNotify</div>;
-};
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default ToastNotify;
+export const ToastNotify = (type: string, message: string) => {
+  if (type === 'success') {
+    toast.success(message, { position: 'top-right' });
+  } else if (type === 'error') {
+    toast.error(message, { position: 'top-right' });
+  } else {
+    toast.info(message, { position: 'top-right' });
+  }
+};
