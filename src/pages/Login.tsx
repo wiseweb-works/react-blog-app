@@ -2,10 +2,12 @@ import { Avatar, Box, Container, Typography } from '@mui/material';
 import * as Yup from 'yup';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import { Formik } from 'formik';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import LoginForm from '../components/LoginForm';
+import { login } from '../services/authService';
 
 const Login = () => {
+  const navigate = useNavigate();
   const LoginSchema = Yup.object().shape({
     username: Yup.string()
       .min(5, 'Too Short!')
@@ -45,12 +47,16 @@ const Login = () => {
             password: '',
           }}
           validationSchema={LoginSchema}
-          onSubmit={(values) => {
-            console.log(values);
+          onSubmit={async (values) => {
+            try {
+              const userData = await login(values);
+              console.log('User logged in:', userData);
+              navigate('/');
+            } catch (error) {
+              console.error('Login failed:', error);
+              alert('Login failed. Please try again.');
+            }
           }}
-          // onSubmit={(values) => {
-          //   dispatch(createUser(values));
-          // }}
           component={(props) => <LoginForm {...props} />}
         />
       </Container>

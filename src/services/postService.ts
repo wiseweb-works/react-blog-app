@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+import { ToastNotify } from '../helper/ToastNotify';
 import api from './api';
 
 export const fetchPosts = async () => {
@@ -10,11 +12,29 @@ export const fetchPostById = async (id: number) => {
   return response.data;
 };
 
+export const fetchCategories = async () => {
+  const response = await api.get('/categories/');
+  return response.data.data;
+};
+
 export const createPost = async (data: {
   title: string;
-  body: string;
-  userId: number;
+  image: string;
+  categoryId: string;
+  isPublished: boolean;
+  content: string;
 }) => {
-  const response = await api.post('/blogs', data);
-  return response.data;
+  try {
+    const response = await api.post('/blogs', data);
+    if (response.status === 201) {
+      ToastNotify('success', 'Post created successfully');
+      return response.data;
+    }
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      ToastNotify('error', error.response?.data?.message || 'Login failed');
+    } else {
+      ToastNotify('error', 'An unexpected error occurred');
+    }
+  }
 };

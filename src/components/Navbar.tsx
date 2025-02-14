@@ -15,6 +15,7 @@ import {
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router';
+import { logout } from '../services/authService';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -93,7 +94,7 @@ const Navbar = () => {
               <MenuItem
                 onClick={() => {
                   handleCloseNavMenu();
-                  navigate('/dashboard');
+                  navigate('/');
                 }}
               >
                 <Typography sx={{ textAlign: 'center' }}>Dashboard</Typography>
@@ -141,7 +142,7 @@ const Navbar = () => {
             <Button
               onClick={() => {
                 handleCloseNavMenu();
-                navigate('/dashboard');
+                navigate('/');
               }}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
@@ -220,7 +221,8 @@ const Navbar = () => {
               <MenuItem
                 onClick={() => {
                   handleCloseUserMenu();
-                  navigate('/logout');
+                  logout();
+                  navigate('/login');
                 }}
               >
                 <Typography sx={{ textAlign: 'center' }}>Log Out</Typography>

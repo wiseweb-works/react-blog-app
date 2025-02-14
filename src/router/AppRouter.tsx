@@ -1,9 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import PrivateRouter from './PrivateRouter';
 import {
+  About,
   Dashboard,
   Details,
   Login,
+  NewBlog,
   NotFound,
   Profile,
   Register,
@@ -17,9 +19,11 @@ const AppRouter = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/about" element={<About />} />
         <Route path="/" element={<PrivateRouter />}>
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="" element={<Dashboard />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="newblog" element={<NewBlog />} />
           <Route path="blogs/:id" element={<Details />} />
         </Route>
         <Route path="*" element={<NotFound />} />
