@@ -1,6 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import PrivateRouter from './PrivateRouter';
-import { Dashboard, Details, Login, NotFound, Register } from '../pages';
+import {
+  Dashboard,
+  Details,
+  Login,
+  NotFound,
+  Profile,
+  Register,
+} from '../pages';
 import { Footer, Navbar } from '../components';
 
 const AppRouter = () => {
@@ -12,6 +19,7 @@ const AppRouter = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<PrivateRouter />}>
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="blogs/:id" element={<Details />} />
         </Route>
         <Route path="*" element={<NotFound />} />

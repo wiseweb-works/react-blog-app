@@ -14,11 +14,10 @@ import {
 } from '@mui/material';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import MenuIcon from '@mui/icons-material/Menu';
-
-const pages = ['Dashboard', 'New Blog', 'About'];
-const settings = ['My Blogs', 'Profile', 'Login', 'Logout'];
+import { useNavigate } from 'react-router';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -49,8 +48,7 @@ const Navbar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            onClick={() => navigate('/')}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -59,6 +57,7 @@ const Navbar = () => {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              cursor: 'pointer',
             }}
           >
             BLOG
@@ -91,19 +90,39 @@ const Navbar = () => {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem
+                onClick={() => {
+                  handleCloseNavMenu();
+                  navigate('/dashboard');
+                }}
+              >
+                <Typography sx={{ textAlign: 'center' }}>Dashboard</Typography>
+              </MenuItem>
+
+              <MenuItem
+                onClick={() => {
+                  handleCloseNavMenu();
+                  navigate('/newblog');
+                }}
+              >
+                <Typography sx={{ textAlign: 'center' }}>New Blog</Typography>
+              </MenuItem>
+
+              <MenuItem
+                onClick={() => {
+                  handleCloseNavMenu();
+                  navigate('/about');
+                }}
+              >
+                <Typography sx={{ textAlign: 'center' }}>About</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <MenuBookIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            onClick={() => navigate('/')}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -113,25 +132,46 @@ const Navbar = () => {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              cursor: 'pointer',
             }}
           >
-            LOGO
+            BLOG
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              onClick={() => {
+                handleCloseNavMenu();
+                navigate('/dashboard');
+              }}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Dashboard
+            </Button>
+
+            <Button
+              onClick={() => {
+                handleCloseNavMenu();
+                navigate('/newblog');
+              }}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              New Blog
+            </Button>
+
+            <Button
+              onClick={() => {
+                handleCloseNavMenu();
+                navigate('/about');
+              }}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              About
+            </Button>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="User Name" src="/URL" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -150,13 +190,41 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>
-                    {setting}
-                  </Typography>
-                </MenuItem>
-              ))}
+              <MenuItem
+                onClick={() => {
+                  handleCloseUserMenu();
+                  navigate('/myblogs');
+                }}
+              >
+                <Typography sx={{ textAlign: 'center' }}>My Blogs</Typography>
+              </MenuItem>
+
+              <MenuItem
+                onClick={() => {
+                  handleCloseUserMenu();
+                  navigate('/profile');
+                }}
+              >
+                <Typography sx={{ textAlign: 'center' }}>Profile</Typography>
+              </MenuItem>
+
+              <MenuItem
+                onClick={() => {
+                  handleCloseUserMenu();
+                  navigate('/login');
+                }}
+              >
+                <Typography sx={{ textAlign: 'center' }}>Login</Typography>
+              </MenuItem>
+
+              <MenuItem
+                onClick={() => {
+                  handleCloseUserMenu();
+                  navigate('/logout');
+                }}
+              >
+                <Typography sx={{ textAlign: 'center' }}>Log Out</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
