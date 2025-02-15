@@ -50,9 +50,6 @@ const NewBlog = () => {
             content: '',
           }}
           validationSchema={NewPostSchema}
-          // onSubmit={(values) => {
-          //   dispatch(createUser(values));
-          // }}
           onSubmit={async (values) => {
             const response = await createPost(values);
             if (response) navigate('/');

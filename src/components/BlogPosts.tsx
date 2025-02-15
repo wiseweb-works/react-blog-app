@@ -4,8 +4,10 @@ import { Button, Grid2, Paper, Typography } from '@mui/material';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import { useNavigate } from 'react-router';
 
 const BlogPosts = () => {
+  const navigate = useNavigate();
   const formatDate = (isoString: string): string => {
     return new Date(isoString).toLocaleString('en-US');
   };
@@ -100,7 +102,15 @@ const BlogPosts = () => {
                 </Grid2>
 
                 <Grid2>
-                  <Button variant="contained" color="success">
+                  <Button
+                    variant="contained"
+                    color="success"
+                    onClick={() =>
+                      navigate(`/blogs/${post._id}`, {
+                        state: { id: post._id },
+                      })
+                    }
+                  >
                     READ MORE
                   </Button>
                 </Grid2>

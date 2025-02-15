@@ -2,6 +2,7 @@ import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
+import queryPlugin from '@tanstack/eslint-plugin-query';
 
 export default [
   {
@@ -20,6 +21,7 @@ export default [
       '@typescript-eslint': tseslint.plugin,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      '@tanstack/query': queryPlugin,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -27,6 +29,7 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      ...queryPlugin.configs.recommended.rules,
     },
   },
   ...tseslint.configs.recommended,

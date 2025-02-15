@@ -9,12 +9,29 @@ export const fetchPosts = async () => {
 
 export const fetchPostById = async (id: number) => {
   const response = await api.get(`/blogs/${id}`);
-  return response.data;
+  return response.data.data;
 };
 
 export const fetchCategories = async () => {
   const response = await api.get('/categories/');
   return response.data.data;
+};
+
+export const fetchCommentsByBlogId = async (blogId: number) => {
+  try {
+    const response = await api.get(`/comments?filter[blogId]=${blogId}`);
+    return response.data.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      ToastNotify(
+        'error',
+        error.response?.data?.message || 'Yorumları alırken hata oluştu'
+      );
+    } else {
+      ToastNotify('error', 'Beklenmeyen bir hata oluştu');
+    }
+    return [];
+  }
 };
 
 export const createPost = async (data: {
@@ -32,7 +49,32 @@ export const createPost = async (data: {
     }
   } catch (error) {
     if (error instanceof AxiosError) {
-      ToastNotify('error', error.response?.data?.message || 'Login failed');
+      ToastNotify(
+        'error',
+        error.response?.data?.message || 'Post creation failed'
+      );
+    } else {
+      ToastNotify('error', 'An unexpected error occurred');
+    }
+  }
+};
+
+export const createComment = async (data: {
+  comment: string;
+  blogId: number;
+}) => {
+  try {
+    const response = await api.post('/comments/', data);
+    if (response.status === 201) {
+      ToastNotify('success', 'Comment created successfully');
+      return response.data;
+    }
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      ToastNotify(
+        'error',
+        error.response?.data?.message || 'Comment creation failed'
+      );
     } else {
       ToastNotify('error', 'An unexpected error occurred');
     }
