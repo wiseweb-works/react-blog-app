@@ -19,7 +19,7 @@ const BlogComments = () => {
   };
 
   interface Comment {
-    id: string;
+    _id: string;
     userId: {
       username: string;
     };
@@ -60,7 +60,7 @@ const BlogComments = () => {
         ) : (
           comments?.map((comment: Comment) => (
             <>
-              <ListItem key={comment.id}>
+              <ListItem key={comment._id}>
                 <ListItemText
                   primary={
                     <Typography

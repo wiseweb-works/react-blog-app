@@ -3,9 +3,11 @@ import * as Yup from 'yup';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Formik } from 'formik';
 import RegisterForm from '../components/RegisterForm';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { register } from '../services/authService';
 
 const Register = () => {
+  const navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
     username: Yup.string()
       .min(5, 'Too Short!')
@@ -71,12 +73,16 @@ const Register = () => {
             password: '',
           }}
           validationSchema={SignupSchema}
-          onSubmit={(values) => {
-            console.log(values);
+          onSubmit={async (values) => {
+            try {
+              const userData = await register(values);
+              console.log('User logged in:', userData);
+              navigate('/');
+            } catch (error) {
+              console.error('Login failed:', error);
+              alert('Login failed. Please try again.');
+            }
           }}
-          // onSubmit={(values) => {
-          //   dispatch(createUser(values));
-          // }}
           component={(props) => <RegisterForm {...props} />}
         />
       </Container>

@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import PrivateRouter from './PrivateRouter';
 import {
   About,
+  Blogs,
   Dashboard,
   Details,
   Login,
@@ -23,6 +24,7 @@ const AppRouter = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="" element={<PrivateRouter />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/blogs" element={<Blogs />} />
           <Route path="/newblog" element={<NewBlog />} />
           <Route path="/blogs/:id" element={<Details />} />
         </Route>

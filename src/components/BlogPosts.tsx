@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchPosts } from '../services/postService';
+import { addRemoveLike, fetchPosts } from '../services/postService';
 import { Button, Grid2, Paper, Typography } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
@@ -20,10 +21,14 @@ const BlogPosts = () => {
     data: posts,
     isLoading,
     error,
+    refetch,
   } = useQuery({
     queryKey: ['posts'],
     queryFn: fetchPosts,
   });
+
+  const userID = localStorage.getItem('userID');
+  // const userID = '65343222b67e9681f937f001';
 
   if (isLoading) return <Typography>Loading...</Typography>;
   if (error instanceof Error)
@@ -38,8 +43,8 @@ const BlogPosts = () => {
           image: string;
           content: string;
           createdAt: string;
-          likes: [];
-          comments: [];
+          likes: string[];
+          comments: any[];
           countOfVisitors: number;
         }) => (
           <Grid2 key={post._id} size={{ xs: 12, md: 6, lg: 4, xl: 3 }}>
@@ -81,8 +86,20 @@ const BlogPosts = () => {
                 alignItems="center"
               >
                 <Grid2>
-                  <Button size="medium">
-                    <FavoriteBorder fontSize="medium" />
+                  <Button
+                    size="medium"
+                    color="error"
+                    onClick={async () => {
+                      await addRemoveLike(post._id);
+                      refetch();
+                    }}
+                  >
+                    {post.likes?.includes(userID ?? '') ? (
+                      <FavoriteIcon fontSize="medium" />
+                    ) : (
+                      <FavoriteBorder fontSize="medium" />
+                    )}
+
                     <Typography variant="body2" ml={0.5}>
                       {post.likes.length}
                     </Typography>

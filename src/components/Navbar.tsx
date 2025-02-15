@@ -19,6 +19,7 @@ import { logout } from '../services/authService';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const isTokenExist = localStorage.getItem('token') !== null;
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -191,42 +192,50 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem
-                onClick={() => {
-                  handleCloseUserMenu();
-                  navigate('/myblogs');
-                }}
-              >
-                <Typography sx={{ textAlign: 'center' }}>My Blogs</Typography>
-              </MenuItem>
+              {isTokenExist && (
+                <MenuItem
+                  onClick={() => {
+                    handleCloseUserMenu();
+                    navigate('/blogs');
+                  }}
+                >
+                  <Typography sx={{ textAlign: 'center' }}>My Blogs</Typography>
+                </MenuItem>
+              )}
 
-              <MenuItem
-                onClick={() => {
-                  handleCloseUserMenu();
-                  navigate('/profile');
-                }}
-              >
-                <Typography sx={{ textAlign: 'center' }}>Profile</Typography>
-              </MenuItem>
+              {isTokenExist && (
+                <MenuItem
+                  onClick={() => {
+                    handleCloseUserMenu();
+                    navigate('/profile');
+                  }}
+                >
+                  <Typography sx={{ textAlign: 'center' }}>Profile</Typography>
+                </MenuItem>
+              )}
 
-              <MenuItem
-                onClick={() => {
-                  handleCloseUserMenu();
-                  navigate('/login');
-                }}
-              >
-                <Typography sx={{ textAlign: 'center' }}>Login</Typography>
-              </MenuItem>
+              {!isTokenExist && (
+                <MenuItem
+                  onClick={() => {
+                    handleCloseUserMenu();
+                    navigate('/login');
+                  }}
+                >
+                  <Typography sx={{ textAlign: 'center' }}>Login</Typography>
+                </MenuItem>
+              )}
 
-              <MenuItem
-                onClick={() => {
-                  handleCloseUserMenu();
-                  logout();
-                  navigate('/login');
-                }}
-              >
-                <Typography sx={{ textAlign: 'center' }}>Log Out</Typography>
-              </MenuItem>
+              {isTokenExist && (
+                <MenuItem
+                  onClick={() => {
+                    handleCloseUserMenu();
+                    logout();
+                    navigate('/login');
+                  }}
+                >
+                  <Typography sx={{ textAlign: 'center' }}>Log Out</Typography>
+                </MenuItem>
+              )}
             </Menu>
           </Box>
         </Toolbar>

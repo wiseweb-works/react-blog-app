@@ -17,16 +17,24 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
-import { createComment, fetchPostById } from '../services/postService';
+import {
+  addRemoveLike,
+  createComment,
+  deletePost,
+  fetchPostById,
+} from '../services/postService';
 import BlogComments from '../components/BlogComments';
 
 const Details = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [comment, setComment] = useState('');
   const location = useLocation();
+  const userID = localStorage.getItem('userID');
 
   const formatDate = (isoString: string): string => {
     return new Date(isoString).toLocaleString('en-US');
@@ -59,6 +67,7 @@ const Details = () => {
     data: post,
     isLoading,
     error,
+    refetch,
   } = useQuery({
     queryKey: ['post', location.state.id],
     queryFn: () => fetchPostById(location.state.id!),
@@ -99,8 +108,18 @@ const Details = () => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="medium">
-              <FavoriteBorder fontSize="medium" />
+            <Button
+              size="medium"
+              onClick={async () => {
+                await addRemoveLike(post._id);
+                refetch();
+              }}
+            >
+              {post.likes?.includes(userID ?? '') ? (
+                <FavoriteIcon fontSize="medium" />
+              ) : (
+                <FavoriteBorder fontSize="medium" />
+              )}
               <Typography variant="body2" ml={0.5}>
                 {post.likes.length}
               </Typography>
@@ -118,6 +137,32 @@ const Details = () => {
               </Typography>
             </Button>
           </CardActions>
+          {post.userId._id == userID && (
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                gap: 2,
+              }}
+            >
+              <Button variant="contained" color="success">
+                Update Blog
+              </Button>
+              <Button
+                variant="contained"
+                color="error"
+                onClick={async () => {
+                  const isDeleted = await deletePost(post._id);
+                  if (isDeleted) {
+                    navigate('/');
+                  }
+                }}
+              >
+                Delete Blog
+              </Button>
+            </Box>
+          )}
           {open && (
             <>
               <form onSubmit={handleCommentSubmit}>

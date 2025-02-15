@@ -6,6 +6,7 @@ import NotFound from './NotFound';
 import Profile from './Profile';
 import About from './About';
 import NewBlog from './NewBlog';
+import Blogs from './Blogs';
 
 export {
   Login,
@@ -15,5 +16,6 @@ export {
   NotFound,
   Profile,
   About,
+  Blogs,
   NewBlog,
 };
