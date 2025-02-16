@@ -1,6 +1,7 @@
 import { Box, CardMedia, Container, Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { getUserInfo } from '../services/authService';
+import logoProfile from '../assets/profile.png';
 
 const Profile = () => {
   const {
@@ -35,10 +36,7 @@ const Profile = () => {
       <Box sx={{ mt: 4 }}>
         <CardMedia
           component="img"
-          image={
-            image ||
-            'https://www.spatial.io/_next/image?url=https:%2F%2Fmodels.readyplayer.me%2F669e4c9b3d2df5297df36916.png%3Fscene%3Dfullbody-portrait-closeupfront&w=640&q=75'
-          }
+          image={image || logoProfile}
           alt={`${username} Profile Photo`}
           sx={{ objectFit: 'cover', width: '300px', height: '300px' }}
         />

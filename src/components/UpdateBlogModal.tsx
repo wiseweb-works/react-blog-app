@@ -83,7 +83,7 @@ const UpdateBlogModal: React.FC<UpdateBlogModalProps> = ({
             initialValues={{
               title: post.title,
               image: post.image,
-              categoryId: post.categoryId?._id || '', // ❗️ Sadece `_id` değerini alıyoruz
+              categoryId: post.categoryId?._id || '',
               isPublish: post.isPublish,
               content: post.content,
             }}
@@ -126,7 +126,6 @@ const UpdateBlogModal: React.FC<UpdateBlogModalProps> = ({
                   margin="normal"
                 />
 
-                {/* Kategori seçimi */}
                 <FormControl fullWidth margin="normal">
                   <InputLabel>Category*</InputLabel>
                   <Select

@@ -27,8 +27,7 @@ import {
   deletePost,
   fetchPostById,
 } from '../services/postService';
-import BlogComments from '../components/BlogComments';
-import UpdateBlogModal from '../components/UpdateBlogModal';
+import { BlogComments, UpdateBlogModal } from '../components/';
 
 const Details = () => {
   const navigate = useNavigate();

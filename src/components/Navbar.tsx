@@ -15,7 +15,8 @@ import {
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router';
-import { logout } from '../services/authService';
+import { getUserInfo, logout } from '../services/authService';
+import { useQuery } from '@tanstack/react-query';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -41,6 +42,12 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const { data: userData } = useQuery({
+    queryKey: ['user'],
+    queryFn: () => getUserInfo(),
+    enabled: isTokenExist,
+  });
 
   return (
     <AppBar position="static" sx={{ bgcolor: 'black' }}>
@@ -173,7 +180,14 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="User Name" src="/URL" />
+                {userData && isTokenExist ? (
+                  <Avatar
+                    alt={userData[0].username || 'Username'}
+                    src={userData[0].image || '/'}
+                  />
+                ) : (
+                  <Avatar alt="Username" src="/" />
+                )}
               </IconButton>
             </Tooltip>
             <Menu

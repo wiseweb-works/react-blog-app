@@ -1,7 +1,7 @@
 import { Container, Paper } from '@mui/material';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import BlogModal from '../components/BlogModal';
+import { BlogModal } from '../components/';
 import { createPost } from '../services/postService';
 import { useNavigate } from 'react-router';
 
@@ -51,7 +51,6 @@ const NewBlog = () => {
           }}
           validationSchema={NewPostSchema}
           onSubmit={async (values) => {
-            console.log(values);
             const response = await createPost(values);
             if (response) navigate('/');
           }}

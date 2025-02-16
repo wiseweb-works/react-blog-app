@@ -2,7 +2,7 @@ import { Avatar, Box, Container, Typography } from '@mui/material';
 import * as Yup from 'yup';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Formik } from 'formik';
-import RegisterForm from '../components/RegisterForm';
+import { RegisterForm } from '../components/';
 import { Link, useNavigate } from 'react-router';
 import { register } from '../services/authService';
 
@@ -75,8 +75,7 @@ const Register = () => {
           validationSchema={SignupSchema}
           onSubmit={async (values) => {
             try {
-              const userData = await register(values);
-              console.log('User logged in:', userData);
+              await register(values);
               navigate('/');
             } catch (error) {
               console.error('Login failed:', error);

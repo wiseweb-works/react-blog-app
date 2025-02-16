@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import { Formik } from 'formik';
 import { Link, useNavigate } from 'react-router';
-import LoginForm from '../components/LoginForm';
+import { LoginForm } from '../components/';
 import { login } from '../services/authService';
 
 const Login = () => {
@@ -59,11 +59,9 @@ const Login = () => {
           validationSchema={LoginSchema}
           onSubmit={async (values) => {
             try {
-              const userData = await login(values);
-              console.log('User logged in:', userData);
+              await login(values);
               navigate('/');
             } catch (error) {
-              console.error('Login failed:', error);
               alert('Login failed. Please try again.');
             }
           }}
