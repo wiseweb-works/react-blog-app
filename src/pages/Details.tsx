@@ -28,9 +28,11 @@ import {
   fetchPostById,
 } from '../services/postService';
 import BlogComments from '../components/BlogComments';
+import UpdateBlogModal from '../components/UpdateBlogModal';
 
 const Details = () => {
   const navigate = useNavigate();
+  const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [open, setOpen] = useState(false);
   const [comment, setComment] = useState('');
   const location = useLocation();
@@ -146,9 +148,14 @@ const Details = () => {
                 gap: 2,
               }}
             >
-              <Button variant="contained" color="success">
+              <Button
+                variant="contained"
+                color="success"
+                onClick={() => setOpenUpdateModal(true)}
+              >
                 Update Blog
               </Button>
+
               <Button
                 variant="contained"
                 color="error"
@@ -189,6 +196,12 @@ const Details = () => {
           )}
         </Box>
       </Box>
+      <UpdateBlogModal
+        open={openUpdateModal}
+        handleClose={() => setOpenUpdateModal(false)}
+        post={post}
+        refetch={refetch}
+      />
     </Container>
   );
 };

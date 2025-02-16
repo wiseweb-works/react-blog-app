@@ -28,7 +28,6 @@ const BlogPosts = () => {
   });
 
   const userID = localStorage.getItem('userID');
-  // const userID = '65343222b67e9681f937f001';
 
   if (isLoading) return <Typography>Loading...</Typography>;
   if (error instanceof Error)
@@ -44,7 +43,7 @@ const BlogPosts = () => {
           content: string;
           createdAt: string;
           likes: string[];
-          comments: any[];
+          comments: string[];
           countOfVisitors: number;
         }) => (
           <Grid2 key={post._id} size={{ xs: 12, md: 6, lg: 4, xl: 3 }}>
@@ -53,12 +52,10 @@ const BlogPosts = () => {
                 <img src={post.image} height={150} alt="" />
               </Typography>
 
-              {/* Başlık */}
               <Typography variant="h6" textAlign="center" gutterBottom>
                 {post.title}
               </Typography>
 
-              {/* İçerik */}
               <Typography
                 variant="body2"
                 gutterBottom
@@ -74,12 +71,10 @@ const BlogPosts = () => {
                 {stripTags(post.content)}
               </Typography>
 
-              {/* Yayınlanma Tarihi */}
               <Typography variant="body2" gutterBottom>
                 Published Date: {formatDate(post.createdAt)}
               </Typography>
 
-              {/* Butonlar */}
               <Grid2
                 container
                 justifyContent="space-between"

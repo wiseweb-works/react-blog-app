@@ -96,7 +96,6 @@ const BlogModal: React.FC<BlogModalProps> = ({
         margin="normal"
       />
 
-      {/* Kategoriler dinamik olarak yüklenecek */}
       <FormControl fullWidth margin="normal">
         <InputLabel>Category*</InputLabel>
         <Select

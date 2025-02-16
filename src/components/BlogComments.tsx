@@ -51,7 +51,6 @@ const BlogComments = () => {
     );
   }
 
-  console.log(comments);
   return (
     <Box>
       <List>
@@ -67,7 +66,7 @@ const BlogComments = () => {
                       variant="body1"
                       className="MuiListItemText-primary"
                     >
-                      {comment.userId.username} {/* Yorum yazarı */}
+                      {comment.userId.username}
                     </Typography>
                   }
                   secondary={
@@ -76,10 +75,10 @@ const BlogComments = () => {
                       className="MuiListItemText-secondary"
                     >
                       <Typography variant="body1" component="span">
-                        {formatDate(comment.createdAt)} {/* Yorum tarihi */}
+                        {formatDate(comment.createdAt)}
                       </Typography>
                       <Typography variant="body1" component="p" sx={{ mt: 1 }}>
-                        {comment.comment} {/* Yorum içeriği */}
+                        {comment.comment}
                       </Typography>
                     </Typography>
                   }

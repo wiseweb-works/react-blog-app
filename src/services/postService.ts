@@ -91,6 +91,17 @@ export const deletePost = async (blogId: number) => {
   }
 };
 
+export const updatePost = async (id: string, updatedData: object) => {
+  try {
+    const response = await api.put(`/blogs/${id}`, updatedData);
+    return response.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      throw new Error(error.response?.data?.message || 'Failed to update post');
+    }
+  }
+};
+
 export const createComment = async (data: {
   comment: string;
   blogId: number;

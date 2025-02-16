@@ -33,9 +33,42 @@ const Blogs = () => {
       return FetchMyPosts(userID);
     },
   });
+
   if (isLoading) return <Typography>Loading...</Typography>;
   if (error instanceof Error)
     return <Typography>Error: {error.message}</Typography>;
+
+  if (posts.length === 0)
+    return (
+      <Container
+        maxWidth="xl"
+        sx={{
+          marginBlock: 2,
+          minHeight: '80vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Grid2
+          container
+          spacing={2}
+          justifyContent={'center'}
+          sx={{ display: 'flex', flexDirection: 'column' }}
+        >
+          <Typography variant="body1" color="red" textAlign="center">
+            No blogs data...
+          </Typography>
+          <Button
+            variant="contained"
+            color="info"
+            onClick={() => navigate('/newblog')}
+          >
+            WRITE BLOG
+          </Button>
+        </Grid2>
+      </Container>
+    );
 
   return (
     <Container maxWidth="xl" sx={{ marginBlock: 2, minHeight: '80vh' }}>
@@ -48,7 +81,7 @@ const Blogs = () => {
             content: string;
             createdAt: string;
             likes: string[];
-            comments: any[];
+            comments: string[];
             countOfVisitors: number;
           }) => (
             <Grid2 key={post._id} size={{ xs: 12, md: 6, lg: 4, xl: 3 }}>
@@ -57,12 +90,10 @@ const Blogs = () => {
                   <img src={post.image} height={150} alt="" />
                 </Typography>
 
-                {/* Başlık */}
                 <Typography variant="h6" textAlign="center" gutterBottom>
                   {post.title}
                 </Typography>
 
-                {/* İçerik */}
                 <Typography
                   variant="body2"
                   gutterBottom
@@ -78,12 +109,10 @@ const Blogs = () => {
                   {stripTags(post.content)}
                 </Typography>
 
-                {/* Yayınlanma Tarihi */}
                 <Typography variant="body2" gutterBottom>
                   Published Date: {formatDate(post.createdAt)}
                 </Typography>
 
-                {/* Butonlar */}
                 <Grid2
                   container
                   justifyContent="space-between"
