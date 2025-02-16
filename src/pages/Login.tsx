@@ -27,12 +27,22 @@ const Login = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4 }}>
+    <Container
+      maxWidth="lg"
+      sx={{
+        mt: 4,
+        minHeight: '80vh',
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
       <Container
         maxWidth="xs"
         sx={{
-          justifyContent: 'center',
           display: 'flex',
+          justifyContent: 'center',
           flexDirection: 'column',
           alignItems: 'center',
         }}

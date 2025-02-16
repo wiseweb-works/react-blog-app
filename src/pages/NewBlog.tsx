@@ -14,7 +14,7 @@ const NewBlog = () => {
       .required('Required'),
     image: Yup.string().url('Invalid URL'),
     categoryId: Yup.string().required('Required'),
-    isPublished: Yup.boolean().required('Required'),
+    isPublish: Yup.boolean().required('Required'),
     content: Yup.string().max(
       100,
       'Content cannot be more than 100 characters'
@@ -25,7 +25,7 @@ const NewBlog = () => {
     title: string;
     image: string;
     categoryId: string;
-    isPublished: boolean;
+    isPublish: boolean;
     content: string;
   };
 
@@ -46,11 +46,12 @@ const NewBlog = () => {
             title: '',
             image: '',
             categoryId: '',
-            isPublished: false,
+            isPublish: false,
             content: '',
           }}
           validationSchema={NewPostSchema}
           onSubmit={async (values) => {
+            console.log(values);
             const response = await createPost(values);
             if (response) navigate('/');
           }}

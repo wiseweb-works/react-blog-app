@@ -155,7 +155,7 @@ const Details = () => {
                 onClick={async () => {
                   const isDeleted = await deletePost(post._id);
                   if (isDeleted) {
-                    navigate('/');
+                    navigate(-1);
                   }
                 }}
               >

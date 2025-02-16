@@ -47,7 +47,7 @@ const Register = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4 }}>
+    <Container maxWidth="lg" sx={{ marginBlock: 4 }}>
       <Container
         maxWidth="xs"
         sx={{

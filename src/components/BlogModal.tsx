@@ -20,7 +20,7 @@ type FormValues = {
   title: string;
   image: string;
   categoryId: string;
-  isPublished: boolean;
+  isPublish: boolean;
   content: string;
 };
 
@@ -117,9 +117,11 @@ const BlogModal: React.FC<BlogModalProps> = ({
       <FormControlLabel
         control={
           <Switch
-            name="isPublished"
-            checked={values.isPublished}
-            onChange={(e) => setFieldValue('isPublished', e.target.checked)}
+            name="isPublish"
+            checked={values.isPublish}
+            onChange={(e) => {
+              setFieldValue('isPublish', e.target.checked);
+            }}
             color="primary"
           />
         }

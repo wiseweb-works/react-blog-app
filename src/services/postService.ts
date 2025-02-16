@@ -8,7 +8,7 @@ export const fetchPosts = async () => {
 };
 
 export const FetchMyPosts = async (userId: string) => {
-  const response = await api.get(`/blogs?filter[userId]=${userId}`);
+  const response = await api.get(`/blogs?author=${userId}`);
   return response.data.data;
 };
 
@@ -62,7 +62,7 @@ export const createPost = async (data: {
   title: string;
   image: string;
   categoryId: string;
-  isPublished: boolean;
+  isPublish: boolean;
   content: string;
 }) => {
   try {
