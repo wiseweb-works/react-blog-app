@@ -1,19 +1,5 @@
 import { Button, TextField } from '@mui/material';
-import { FormikErrors, FormikTouched } from 'formik';
-
-type FormValues = {
-  username: string;
-  password: string;
-};
-
-interface LoginFormProps {
-  values: FormValues;
-  errors: FormikErrors<FormValues>;
-  touched: FormikTouched<FormValues>;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
-  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-}
+import { LoginFormProps } from '../types/loginFormTypes';
 
 const LoginForm: React.FC<LoginFormProps> = ({
   values,

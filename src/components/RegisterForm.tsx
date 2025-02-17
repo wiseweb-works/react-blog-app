@@ -1,25 +1,5 @@
 import { Button, TextField } from '@mui/material';
-import { FormikErrors, FormikTouched } from 'formik';
-
-type FormValues = {
-  username: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  image: string;
-  city: string;
-  bio: string;
-  password: string;
-};
-
-interface RegisterFormProps {
-  values: FormValues;
-  errors: FormikErrors<FormValues>;
-  touched: FormikTouched<FormValues>;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
-  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-}
+import { RegisterFormProps } from '../types/registerFormTypes';
 
 const RegisterForm: React.FC<RegisterFormProps> = ({
   values,

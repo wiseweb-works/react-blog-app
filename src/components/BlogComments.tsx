@@ -11,19 +11,11 @@ import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router';
 import { fetchCommentsByBlogId } from '../services/postService';
 import { formatDate } from '../helper';
+import { Comment } from '../types/commentTypes';
 
 const BlogComments = () => {
   const location = useLocation();
   const blogId = location.state?.id;
-
-  interface Comment {
-    _id: string;
-    userId: {
-      username: string;
-    };
-    createdAt: string;
-    comment: string;
-  }
 
   const {
     data: comments,

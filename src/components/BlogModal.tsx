@@ -12,32 +12,10 @@ import {
   CircularProgress,
   Alert,
 } from '@mui/material';
-import { FormikErrors, FormikTouched } from 'formik';
 import { useQuery } from '@tanstack/react-query';
 import { fetchCategories } from '../services/postService';
-
-type FormValues = {
-  title: string;
-  image: string;
-  categoryId: string;
-  isPublish: boolean;
-  content: string;
-};
-
-interface Category {
-  _id: string;
-  name: string;
-}
-
-interface BlogModalProps {
-  values: FormValues;
-  errors: FormikErrors<FormValues>;
-  touched: FormikTouched<FormValues>;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
-  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  setFieldValue: (field: string, value: string | boolean) => void;
-}
+import { Category } from '../types/categoryTypes';
+import { BlogModalProps } from '../types/blogModalTypes';
 
 const BlogModal: React.FC<BlogModalProps> = ({
   values,

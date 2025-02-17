@@ -17,35 +17,9 @@ import {
 import { Formik, FormikHelpers } from 'formik';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { fetchCategories, updatePost } from '../services/postService';
-
-type FormValues = {
-  title: string;
-  image: string;
-  categoryId: string;
-  isPublish: boolean;
-  content: string;
-};
-
-interface Category {
-  _id: string;
-  name: string;
-}
-
-interface Post {
-  _id: string;
-  title: string;
-  image: string;
-  categoryId: { _id: string; name: string } | null;
-  isPublish: boolean;
-  content: string;
-}
-
-interface UpdateBlogModalProps {
-  open: boolean;
-  handleClose: () => void;
-  post: Post;
-  refetch: () => void;
-}
+import { Category } from '../types/categoryTypes';
+import { FormValues } from '../types/formTypes';
+import { UpdateBlogModalProps } from '../types/updateBlogTypes';
 
 const UpdateBlogModal: React.FC<UpdateBlogModalProps> = ({
   open,
