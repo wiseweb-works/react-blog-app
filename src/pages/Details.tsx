@@ -28,6 +28,8 @@ import {
   fetchPostById,
 } from '../services/postService';
 import { BlogComments, UpdateBlogModal } from '../components/';
+import { formatDate, stripTags } from '../helper';
+import { Helmet } from 'react-helmet';
 
 const Details = () => {
   const navigate = useNavigate();
@@ -36,10 +38,6 @@ const Details = () => {
   const [comment, setComment] = useState('');
   const location = useLocation();
   const userID = localStorage.getItem('userID');
-
-  const formatDate = (isoString: string): string => {
-    return new Date(isoString).toLocaleString('en-US');
-  };
 
   const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setComment(event.target.value);
@@ -60,10 +58,6 @@ const Details = () => {
     }
   };
 
-  function stripTags(content: string): string {
-    return content.replace(/<[^>]*>/g, '');
-  }
-
   const {
     data: post,
     isLoading,
@@ -80,6 +74,9 @@ const Details = () => {
 
   return (
     <Container maxWidth="md" sx={{ marginBlock: 2 }}>
+      <Helmet>
+        <title>Blog Details</title>
+      </Helmet>
       <Box>
         <Box>
           <CardMedia

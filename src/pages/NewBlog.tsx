@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { BlogModal } from '../components/';
 import { createPost } from '../services/postService';
 import { useNavigate } from 'react-router';
+import { Helmet } from 'react-helmet';
 
 const NewBlog = () => {
   const navigate = useNavigate();
@@ -40,6 +41,9 @@ const NewBlog = () => {
         alignItems: 'center',
       }}
     >
+      <Helmet>
+        <title>New Blog</title>
+      </Helmet>
       <Paper elevation={10} sx={{ p: 2, mt: 2 }}>
         <Formik<FormValues>
           initialValues={{

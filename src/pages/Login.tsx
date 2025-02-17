@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import { Link, useNavigate } from 'react-router';
 import { LoginForm } from '../components/';
 import { login } from '../services/authService';
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,6 +39,9 @@ const Login = () => {
         alignItems: 'center',
       }}
     >
+      <Helmet>
+        <title>Login Page</title>
+      </Helmet>
       <Container
         maxWidth="xs"
         sx={{

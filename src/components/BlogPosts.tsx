@@ -6,16 +6,10 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import { useNavigate } from 'react-router';
+import { formatDate, stripTags } from '../helper';
 
 const BlogPosts = () => {
   const navigate = useNavigate();
-  const formatDate = (isoString: string): string => {
-    return new Date(isoString).toLocaleString('en-US');
-  };
-
-  function stripTags(content: string): string {
-    return content.replace(/<[^>]*>/g, '');
-  }
 
   const {
     data: posts,

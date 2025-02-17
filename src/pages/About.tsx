@@ -5,6 +5,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import avatar from '../assets/mern.png';
+import { Helmet } from 'react-helmet';
 
 const About = () => {
   return (
@@ -18,6 +19,9 @@ const About = () => {
         alignItems: 'center',
       }}
     >
+      <Helmet>
+        <title>About</title>
+      </Helmet>
       <Box>
         <Paper elevation={10} sx={{ p: 2, mt: 2, textAlign: 'center' }}>
           <BadgeOutlinedIcon sx={{ fontSize: 60, color: 'purple' }} />

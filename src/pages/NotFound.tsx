@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router';
 import goBack from '../assets/404.png';
 import { Box, Typography } from '@mui/material';
+import { Helmet } from 'react-helmet';
 
 const NotFound = () => {
   const navigate = useNavigate();
@@ -14,6 +15,9 @@ const NotFound = () => {
         alignItems: 'center',
       }}
     >
+      <Helmet>
+        <title>Page Not Found</title>
+      </Helmet>
       <Typography variant="h3" gutterBottom>
         Page Not Found
       </Typography>

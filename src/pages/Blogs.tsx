@@ -6,17 +6,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import { formatDate, stripTags } from '../helper';
+import { Helmet } from 'react-helmet';
 
 const Blogs = () => {
   const navigate = useNavigate();
-  const formatDate = (isoString: string): string => {
-    return new Date(isoString).toLocaleString('en-US');
-  };
-
-  function stripTags(content: string): string {
-    return content.replace(/<[^>]*>/g, '');
-  }
-
   const userID = localStorage.getItem('userID');
 
   const {
@@ -50,6 +44,9 @@ const Blogs = () => {
           alignItems: 'center',
         }}
       >
+        <Helmet>
+          <title>My Blog Posts</title>
+        </Helmet>
         <Grid2
           container
           spacing={2}

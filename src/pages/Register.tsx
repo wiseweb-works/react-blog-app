@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import { RegisterForm } from '../components/';
 import { Link, useNavigate } from 'react-router';
 import { register } from '../services/authService';
+import { Helmet } from 'react-helmet';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -48,6 +49,9 @@ const Register = () => {
 
   return (
     <Container maxWidth="lg" sx={{ marginBlock: 4 }}>
+      <Helmet>
+        <title>Register Page</title>
+      </Helmet>
       <Container
         maxWidth="xs"
         sx={{

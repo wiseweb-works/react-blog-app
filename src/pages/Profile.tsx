@@ -2,6 +2,7 @@ import { Box, CardMedia, Container, Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { getUserInfo } from '../services/authService';
 import logoProfile from '../assets/profile.png';
+import { Helmet } from 'react-helmet';
 
 const Profile = () => {
   const {
@@ -32,6 +33,9 @@ const Profile = () => {
         minHeight: '80vh',
       }}
     >
+      <Helmet>
+        <title>My Profile</title>
+      </Helmet>
       <h1>Profile</h1>
       <Box sx={{ mt: 4 }}>
         <CardMedia

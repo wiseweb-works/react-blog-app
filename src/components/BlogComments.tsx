@@ -10,13 +10,11 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router';
 import { fetchCommentsByBlogId } from '../services/postService';
+import { formatDate } from '../helper';
 
 const BlogComments = () => {
   const location = useLocation();
   const blogId = location.state?.id;
-  const formatDate = (isoString: string): string => {
-    return new Date(isoString).toLocaleString('en-US');
-  };
 
   interface Comment {
     _id: string;
