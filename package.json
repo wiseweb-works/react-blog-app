@@ -12,37 +12,41 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^6.4.4",
-    "@mui/material": "^6.4.4",
-    "@tanstack/react-query": "^5.66.3",
-    "axios": "^1.8.2",
+    "@mui/icons-material": "^6.4.8",
+    "@mui/material": "^6.4.8",
+    "@tanstack/react-query": "^5.69.0",
+    "axios": "^1.8.4",
     "formik": "^2.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-helmet": "^6.1.0",
-    "react-router": "^7.1.5",
-    "react-toastify": "^11.0.3",
+    "react-router": "^7.4.0",
+    "react-toastify": "^11.0.5",
     "yup": "^1.6.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.20.0",
-    "@tanstack/eslint-plugin-query": "^5.66.1",
-    "@types/react": "^19.0.9",
-    "@types/react-dom": "^19.0.3",
+    "@eslint/js": "^9.23.0",
+    "@tanstack/eslint-plugin-query": "^5.68.0",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
     "@types/react-helmet": "^6.1.11",
-    "@vitejs/plugin-react-swc": "^3.8.0",
-    "eslint": "^9.20.1",
-    "eslint-plugin-react-hooks": "^5.1.0",
+    "@vitejs/plugin-react-swc": "^3.8.1",
+    "eslint": "^9.23.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^15.15.0",
-    "typescript": "~5.7.3",
-    "typescript-eslint": "^8.24.0",
-    "vite": "^6.1.2"
+    "globals": "^16.0.0",
+    "typescript": "~5.8.2",
+    "typescript-eslint": "^8.28.0",
+    "vite": "^6.2.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "@swc/core",
       "esbuild"
-    ]
+    ],
+    "overrides": {
+      "esbuild@<=0.24.2": ">=0.25.0",
+      "@babel/runtime@<7.26.10": ">=7.26.10"
+    }
   }
 }
