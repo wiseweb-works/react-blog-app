@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { addRemoveLike, fetchPosts } from '../services/postService';
-import { Button, Grid2, Paper, Typography } from '@mui/material';
+import { Button, Grid, Paper, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
@@ -29,9 +29,9 @@ const BlogPosts = () => {
     return <Typography>Error: {error.message}</Typography>;
 
   return (
-    <Grid2 container spacing={2}>
+    <Grid container spacing={2}>
       {posts?.map((post: PostTypes) => (
-        <Grid2 key={post._id} size={{ xs: 12, md: 6, lg: 4, xl: 3 }}>
+        <Grid key={post._id} size={{ xs: 12, md: 6, lg: 4, xl: 3 }}>
           <Paper elevation={10} square={false} sx={{ p: 1 }}>
             <Typography variant="body1" textAlign="center" gutterBottom>
               <img src={post.image} height={150} alt="" />
@@ -60,8 +60,8 @@ const BlogPosts = () => {
               Published Date: {formatDate(post.createdAt)}
             </Typography>
 
-            <Grid2 container justifyContent="space-between" alignItems="center">
-              <Grid2>
+            <Grid container justifyContent="space-between" alignItems="center">
+              <Grid>
                 <Button
                   size="medium"
                   color="error"
@@ -92,9 +92,9 @@ const BlogPosts = () => {
                     {post.countOfVisitors}
                   </Typography>
                 </Button>
-              </Grid2>
+              </Grid>
 
-              <Grid2>
+              <Grid>
                 <Button
                   variant="contained"
                   color="success"
@@ -106,12 +106,12 @@ const BlogPosts = () => {
                 >
                   READ MORE
                 </Button>
-              </Grid2>
-            </Grid2>
+              </Grid>
+            </Grid>
           </Paper>
-        </Grid2>
+        </Grid>
       ))}
-    </Grid2>
+    </Grid>
   );
 };
 

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { addRemoveLike, FetchMyPosts } from '../services/postService';
 import { useNavigate } from 'react-router';
-import { Button, Container, Grid2, Paper, Typography } from '@mui/material';
+import { Button, Container, Grid, Paper, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
@@ -47,7 +47,7 @@ const Blogs = () => {
         <Helmet>
           <title>My Blog Posts</title>
         </Helmet>
-        <Grid2
+        <Grid
           container
           spacing={2}
           justifyContent={'center'}
@@ -63,13 +63,13 @@ const Blogs = () => {
           >
             WRITE BLOG
           </Button>
-        </Grid2>
+        </Grid>
       </Container>
     );
 
   return (
     <Container maxWidth="xl" sx={{ marginBlock: 2, minHeight: '80vh' }}>
-      <Grid2 container spacing={2} justifyContent={'center'}>
+      <Grid container spacing={2} justifyContent={'center'}>
         {posts?.map(
           (post: {
             _id: number;
@@ -81,7 +81,7 @@ const Blogs = () => {
             comments: string[];
             countOfVisitors: number;
           }) => (
-            <Grid2 key={post._id} size={{ xs: 12, md: 6, lg: 4, xl: 3 }}>
+            <Grid key={post._id} size={{ xs: 12, md: 6, lg: 4, xl: 3 }}>
               <Paper elevation={10} square={false} sx={{ p: 1 }}>
                 <Typography variant="body1" textAlign="center" gutterBottom>
                   <img src={post.image} height={150} alt="" />
@@ -110,12 +110,12 @@ const Blogs = () => {
                   Published Date: {formatDate(post.createdAt)}
                 </Typography>
 
-                <Grid2
+                <Grid
                   container
                   justifyContent="space-between"
                   alignItems="center"
                 >
-                  <Grid2>
+                  <Grid>
                     <Button
                       size="medium"
                       color="error"
@@ -146,9 +146,9 @@ const Blogs = () => {
                         {post.countOfVisitors}
                       </Typography>
                     </Button>
-                  </Grid2>
+                  </Grid>
 
-                  <Grid2>
+                  <Grid>
                     <Button
                       variant="contained"
                       color="success"
@@ -160,13 +160,13 @@ const Blogs = () => {
                     >
                       READ MORE
                     </Button>
-                  </Grid2>
-                </Grid2>
+                  </Grid>
+                </Grid>
               </Paper>
-            </Grid2>
+            </Grid>
           )
         )}
-      </Grid2>
+      </Grid>
     </Container>
   );
 };
